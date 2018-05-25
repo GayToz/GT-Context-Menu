@@ -1,5 +1,5 @@
 /*------------------------------------------
-			Addon By GayToz
+            Addon By GayToz
 ----------------BLUR-----------------------*/
 
 local blur = Material("pp/blurscreen")
@@ -32,11 +32,12 @@ surface.CreateFont( "GTContext_Money", {   font = "Roboto",    size = 25,  weigh
 local langue = GTContext.choice
 
 hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
+    gui.EnableScreenClicker(true)
 
-    local ContextMenu = vgui.Create("DFrame")
+    ContextMenu = vgui.Create("DFrame")
     ContextMenu:SetTitle("")
-    ContextMenu:SetSize(500,700)
-    ContextMenu:SetPos( ScrW() * 0.630, ScrH() * 0.050 )
+    ContextMenu:SetSize(500,600)
+    ContextMenu:SetPos( ScrW() * 0.630, ScrH() * 0.100 )
     ContextMenu:ShowCloseButton(false)
     ContextMenu:SetDraggable(false)
     ContextMenu:MakePopup()
@@ -83,6 +84,19 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
 
     local Scroll = vgui.Create( "DScrollPanel", AreaButton )
     Scroll:Dock( FILL )
+    local sbar = Scroll:GetVBar()
+    function sbar:Paint( w, h )
+        draw.RoundedBox( 0, 0, 0, w, h, Color( 0, 0, 0, 100 ) )
+    end
+    function sbar.btnUp:Paint( w, h )
+        draw.RoundedBox( 0, 0, 0, w, h, Color( 0, 0, 0 ) )
+    end
+    function sbar.btnDown:Paint( w, h )
+        draw.RoundedBox( 0, 0, 0, w, h, Color( 0, 0, 0 ) )
+    end
+    function sbar.btnGrip:Paint( w, h )
+        draw.RoundedBox( 0, 0, 0, w, h, Color( 50, 50, 50 ) )
+    end
 
     local List = vgui.Create( "DIconLayout", Scroll )
     List:Dock( FILL )
@@ -116,7 +130,6 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
             draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
             draw.DrawText(GTContext.lang[langue].txt16, "GTContext_Money", ScrW() * 0.0, ScrH() * 0.028, Color(255, 255, 255, 255))
         end
-        ContextMenu:Close()  
 
         local TextEntry = vgui.Create( "DTextEntry", Menu_DropMoney ) -- create the form as a child of frame
         TextEntry:SetPos( ScrW() * 0.005, ScrH() * 0.080 )
@@ -167,7 +180,6 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
             RunConsoleCommand( "say", "/give "..TextEntry:GetValue() )
             Menu_GiveMoney:Close()
         end
-        ContextMenu:Close()  
     end
 
     local DropWeapon = vgui.Create( "DButton", List )
@@ -185,7 +197,6 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
 
     DropWeapon.DoClick = function()
         RunConsoleCommand( "say", "/dropweapon " )
-        ContextMenu:Close()  
     end
 
     local Sleep = vgui.Create( "DButton", List )
@@ -202,15 +213,14 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
     end
 
     Sleep.DoClick = function()
-        RunConsoleCommand( "say", "/sleep "..TextEntry:GetValue() )
-        ContextMenu:Close()  
+        RunConsoleCommand( "say", "/sleep " )
     end
 
 /*------------------------------------------
-			BUTTON POLICE
+            BUTTON POLICE
 ------------------------------------------*/
 if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) then
-	local Warrant = vgui.Create( "DButton", List )
+    local Warrant = vgui.Create( "DButton", List )
     Warrant:SetText( GTContext.lang[langue].txt19 )
     Warrant:SetPos( ScrW()* 0.100, ScrH()* 0.850 )
     Warrant:SetSize( 475, 35 )
@@ -218,10 +228,10 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
     Warrant:SetTextColor(Color(255,255,255))
 
     Warrant.Paint = function(self, w, h)
-	DrawBlur(self, 2)
+    DrawBlur(self, 2)
     draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
     draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
-	end
+    end
 
     Warrant.DoClick = function()
 
@@ -259,16 +269,15 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
         Accept:SetTextColor(Color(255,255,255))
 
         Accept.Paint = function(self, w, h)
-	    DrawBlur(self, 2)
+        DrawBlur(self, 2)
         draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
         draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
-	    end
+        end
 
-	    Accept.DoClick = function()
-	  	    RunConsoleCommand( "say", "/wanted "..TextEntry4:GetValue().." "..TextEntry5:GetValue())
-	    	Wanted_Player:Close()
-	    end
-        ContextMenu:Close()  
+        Accept.DoClick = function()
+            RunConsoleCommand( "say", "/wanted "..TextEntry4:GetValue().." "..TextEntry5:GetValue())
+            Wanted_Player:Close()
+        end
     end
 
     local UnWanted = vgui.Create( "DButton", List )
@@ -279,10 +288,10 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
     UnWanted:SetTextColor(Color(255,255,255))
 
     UnWanted.Paint = function(self, w, h)
-	DrawBlur(self, 2)
+    DrawBlur(self, 2)
     draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
     draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
-	end
+    end
 
     UnWanted.DoClick = function()
 
@@ -314,19 +323,18 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
         Accept1:SetTextColor(Color(255,255,255))
 
         Accept1.Paint = function(self, w, h)
-	    DrawBlur(self, 2)
+        DrawBlur(self, 2)
         draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
         draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
-	    end
+        end
 
-	    Accept1.DoClick = function()
-	  	    RunConsoleCommand( "say", "/unwanted "..TextEntry6:GetValue())
-	    	UnWanted_Player:Close()
-	    end
-        ContextMenu:Close()  
+        Accept1.DoClick = function()
+            RunConsoleCommand( "say", "/unwanted "..TextEntry6:GetValue())
+            UnWanted_Player:Close()
+        end 
     end
 
-	local Warrant = vgui.Create( "DButton", List )
+    local Warrant = vgui.Create( "DButton", List )
     Warrant:SetText( GTContext.lang[langue].txt22 )
     Warrant:SetPos( ScrW()* 0.100, ScrH()* 0.850 )
     Warrant:SetSize( 475, 35 )
@@ -334,10 +342,10 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
     Warrant:SetTextColor(Color(255,255,255))
 
     Warrant.Paint = function(self, w, h)
-	DrawBlur(self, 2)
+    DrawBlur(self, 2)
     draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
     draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
-	end
+    end
 
     Warrant.DoClick = function()
 
@@ -375,16 +383,15 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
         Accept:SetTextColor(Color(255,255,255))
 
         Accept.Paint = function(self, w, h)
-	    DrawBlur(self, 2)
+        DrawBlur(self, 2)
         draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
         draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
-	    end
+        end
 
-	    Accept.DoClick = function()
-	  	    RunConsoleCommand( "say", "/warrant "..TextEntry:GetValue().." "..TextEntry2:GetValue())
-	    	Warrant_Player:Close()
-	    end
-        ContextMenu:Close()  
+        Accept.DoClick = function()
+            RunConsoleCommand( "say", "/warrant "..TextEntry:GetValue().." "..TextEntry2:GetValue())
+            Warrant_Player:Close()
+        end
     end
 
     local UnWarrant = vgui.Create( "DButton", List )
@@ -395,10 +402,10 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
     UnWarrant:SetTextColor(Color(255,255,255))
 
     UnWarrant.Paint = function(self, w, h)
-	DrawBlur(self, 2)
+    DrawBlur(self, 2)
     draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
     draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
-	end
+    end
 
     UnWarrant.DoClick = function()
 
@@ -430,16 +437,15 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
         Accept1:SetTextColor(Color(255,255,255))
 
         Accept1.Paint = function(self, w, h)
-	    DrawBlur(self, 2)
+        DrawBlur(self, 2)
         draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
         draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
-	    end
+        end
 
-	    Accept1.DoClick = function()
-	  	    RunConsoleCommand( "say", "/unwarrant "..TextEntry3:GetValue())
-	    	UnWarrant_Player:Close()
-	    end
-        ContextMenu:Close()  
+        Accept1.DoClick = function()
+            RunConsoleCommand( "say", "/unwarrant "..TextEntry3:GetValue())
+            UnWarrant_Player:Close()
+        end
     end
 end
 
@@ -453,14 +459,13 @@ end
     LawTab:SetTextColor(Color(255,255,255))
 
     LawTab.Paint = function(self, w, h)
-	DrawBlur(self, 2)
+    DrawBlur(self, 2)
     draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
     draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
-	end
+    end
 
     LawTab.DoClick = function()
-	RunConsoleCommand( "say", "/placelaws" )
-	ContextMenu:Close()
+    RunConsoleCommand( "say", "/placelaws" )
     end
 
     local AddLaw = vgui.Create( "DButton", List )
@@ -471,10 +476,10 @@ end
     AddLaw:SetTextColor(Color(255,255,255))
 
     AddLaw.Paint = function(self, w, h)
-	DrawBlur(self, 2)
+    DrawBlur(self, 2)
     draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
     draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
-	end
+    end
 
     AddLaw.DoClick = function()
         local LawAdd = vgui.Create("DFrame")
@@ -504,16 +509,15 @@ end
         Accept35:SetTextColor(Color(255,255,255))
 
         Accept35.Paint = function(self, w, h)
-	    DrawBlur(self, 2)
+        DrawBlur(self, 2)
         draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
         draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
-	    end
+        end
 
-	    Accept35.DoClick = function()
-	  	    RunConsoleCommand( "say", "/addlaw "..TextEntry7:GetValue())
-	    	LawAdd:Close()
-	    end
-        ContextMenu:Close()  
+        Accept35.DoClick = function()
+            RunConsoleCommand( "say", "/addlaw "..TextEntry7:GetValue())
+            LawAdd:Close()
+        end 
     end
 
     local DltLaw = vgui.Create( "DButton", List )
@@ -524,10 +528,10 @@ end
     DltLaw:SetTextColor(Color(255,255,255))
 
     DltLaw.Paint = function(self, w, h)
-	DrawBlur(self, 2)
+    DrawBlur(self, 2)
     draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
     draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
-	end
+    end
 
     DltLaw.DoClick = function()
         local LawDlt = vgui.Create("DFrame")
@@ -557,16 +561,15 @@ end
         Accept36:SetTextColor(Color(255,255,255))
 
         Accept36.Paint = function(self, w, h)
-	    DrawBlur(self, 2)
+        DrawBlur(self, 2)
         draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
         draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
-	    end
+        end
 
-	    Accept36.DoClick = function()
-	  	    RunConsoleCommand( "say", "/removelaw "..TextEntry8:GetValue())
-	    	LawDlt:Close()
-	    end
-        ContextMenu:Close()  
+        Accept36.DoClick = function()
+            RunConsoleCommand( "say", "/removelaw "..TextEntry8:GetValue())
+            LawDlt:Close()
+        end
     end
 end
 
@@ -585,8 +588,7 @@ if GTContext.ShowDiscord == true then
     end
 
     Discord.DoClick = function()
-    	gui.OpenURL(GTContext.LinkDiscord)
-        ContextMenu:Close()  
+        gui.OpenURL(GTContext.LinkDiscord)
     end
 end
 if GTContext.ShowWebsite == true then
@@ -604,8 +606,7 @@ if GTContext.ShowWebsite == true then
     end
 
     Forum.DoClick = function()
-    	gui.OpenURL(GTContext.LinkWebsite)
-        ContextMenu:Close()  
+        gui.OpenURL(GTContext.LinkWebsite)
     end
 end
 /*------------------------------------------
@@ -614,7 +615,7 @@ end
 
     local GTContext_InfoPanel = vgui.Create("DPanel", ContextMenu)
     GTContext_InfoPanel:SetPos(ScrW() * 0.005, ScrH() * 0.500)
-    GTContext_InfoPanel:SetSize(485,260)
+    GTContext_InfoPanel:SetSize(485,200)
     GTContext_InfoPanel.Paint = function(self, w, h)
         DrawBlur(self, 2)
         draw.RoundedBox(0, 0, 0, w, h, Color(50, 50, 50, 150))
@@ -626,25 +627,13 @@ end
     end
 
     local GTContext_Mdl = vgui.Create( "DModelPanel", GTContext_InfoPanel )
-    GTContext_Mdl:SetPos(ScrW() * -0.050, ScrH() * -0.045)
-    GTContext_Mdl:SetSize( 300, 300 )
+    GTContext_Mdl:SetPos(ScrW() * -0.030, ScrH() * -0.040)
+    GTContext_Mdl:SetSize( 230, 230 )
     GTContext_Mdl:SetModel( LocalPlayer():GetModel() )
     function GTContext_Mdl:LayoutEntity( Entity ) return end
+end)
 
-    local Close1 = vgui.Create( "DButton", ContextMenu )
-    Close1:SetText( GTContext.lang[langue].txt18 )
-    Close1:SetPos( ScrW() * 0.010, ScrH() * 0.850 )
-    Close1:SetSize( 475, 35 )
-    Close1:SetTextColor(Color(255,255,255))
-    Close1:SetFont("Trebuchet24")
-
-    Close1.Paint = function(self, w, h)
-        DrawBlur(self, 2)
-        draw.RoundedBox(0, 0, 0, w, h, Color(66, 66, 66, 150))
-        draw.RoundedBox(0, 0, 0, w, h, Color(66, 66, 66, 150))
-    end
-    
-    Close1.DoClick = function()
-        ContextMenu:Close()  
-    end
+hook.Add("OnContextMenuClose","GTMenuClose",function()
+    gui.EnableScreenClicker(false)
+    ContextMenu:Close()
 end)
