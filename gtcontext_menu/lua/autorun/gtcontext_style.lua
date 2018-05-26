@@ -19,7 +19,7 @@
 GTContext.style = {}
 
 GTContext.style["base"] = {
-	color1 = Color(0, 0, 30, 150),
+	color1 = Color(0, 0, 30, 230),
 	color2 = Color(66, 66, 66, 255),
 	color3 = Color(50, 18, 50, 255), 
     color4 = Color(66, 70, 80, 255),
@@ -37,7 +37,7 @@ GTContext.style["clair"] = {
 }
 
 GTContext.style["red"] = {
-	color1 = Color(255, 0, 0, 150),
+	color1 = Color(255, 0, 0, 230),
 	color2 = Color(150, 20, 0, 255),
 	color3 = Color(100, 30, 20, 255), 
     color4 = Color(150, 70, 60, 255),
@@ -46,7 +46,7 @@ GTContext.style["red"] = {
 }
 
 GTContext.style["blue"] = {
-	color1 = Color(0, 0, 255, 150),
+	color1 = Color(0, 0, 255, 230),
 	color2 = Color(0, 20, 150, 255),
 	color3 = Color(20, 30, 100, 255), 
     color4 = Color(60, 70, 150, 255),
@@ -55,7 +55,7 @@ GTContext.style["blue"] = {
 }
 
 GTContext.style["redandblue"] = {
-	color1 = Color(255, 0, 0, 150),
+	color1 = Color(255, 0, 0, 230),
 	color2 = Color(0, 20, 255, 255),
 	color3 = Color(255, 150, 50, 255), 
     color4 = Color(0, 0, 255, 255),
