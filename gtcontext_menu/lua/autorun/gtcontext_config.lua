@@ -6,12 +6,16 @@
 
 GTContext = GTContext or {}
 
+GTContext = {}
+
 GTContext.lang = {}
 
-GTContext = {}
+GTContext.style = {}
 
 GTContext.TextServer     = "ExampleRP"                             ---- Name Of Your Server
 GTContext.choice         = "fr"                                    ---- Language (fr or eng)
+
+GTContext.colorchoice    = "base"                                  ---- The Style (base , clair , blue , red , redandblue)
 
 GTContext.ShowDiscord    = true                                    ---- Show Discord Button ? true = yes, false = no
 GTContext.LinkDiscord    = "https://discord.gg/qSRHJE"             ---- Link Of The Discord Button
