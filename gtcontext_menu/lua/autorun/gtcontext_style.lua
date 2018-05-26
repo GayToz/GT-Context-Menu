@@ -27,15 +27,6 @@ GTContext.style["base"] = {
     color6 = Color(0, 0, 0, 255)
 }
 
-GTContext.style["clair"] = {
-	color1 = Color(50, 150, 255, 255),
-	color2 = Color(50, 100, 150, 255),
-	color3 = Color(50, 120, 255, 255), 
-    color4 = Color(60, 130, 230, 255),
-    color5 = Color(0, 150, 255, 150),
-    color6 = Color(66, 66, 255, 255)
-}
-
 GTContext.style["red"] = {
 	color1 = Color(255, 0, 0, 230),
 	color2 = Color(150, 20, 0, 255),
