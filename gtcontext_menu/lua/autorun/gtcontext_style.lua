@@ -6,12 +6,12 @@
 			HOW TO ADD A STYLE ?
 
 	GTContext.style["..."] = {
-	color1 = Color(YOUR COLOR),  ----- COLOR OF THE BACKGROUND
-	color2 = Color(YOUR COLOR),  ----- THE BACKGROUND OF THE TEXT "INFORMATIONS", "COMMANDS" and THE NAM OF YOUR SERVER !
-	color3 = Color(YOUR COLOR),  ----- THE BACKGROUND OF THE BUTTONS
-    color4 = Color(YOUR COLOR),  ----- THE COLOR OF THE BUTTONS
-    color5 = Color(YOUR COLOR),  ----- THE BACKGROUND OF "Name", "Job"...
-    color6 = Color(YOUR COLOR)   ----- THE COLLOR OF THE SCROLL BAR
+	color1 = Color(YOUR COLOR),  ----- GENERAL BACKGROUND-COLOR
+	color2 = Color(YOUR COLOR),  ----- BACKGROUND-COLOR FOR THE "INFORMATIONS", "COMMANDS", AND "NAME OF YOUR SERVER" TEXTS
+	color3 = Color(YOUR COLOR),  ----- BACKGROUND-COLOR FOR THE BUTTONS
+    color4 = Color(YOUR COLOR),  ----- TEXT-COLOR FOR THE BUTTONS
+    color5 = Color(YOUR COLOR),  ----- BACKGROUND-COLOR FOR "Name", "Job"...
+    color6 = Color(YOUR COLOR)   ----- SCROLL BAR COLOR
     }
 
 ------------------------------------------*/
