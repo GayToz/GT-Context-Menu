@@ -16,7 +16,7 @@ GTContext.lang["fr"] = {
 	txt10 = "Métier",
 	txt11 = "Argent",
 	txt12 = "Salaire",
-	txt13 = "Apeller un staff",
+	txt13 = "Appeler un admin",
 	txt14 = "Raison",
 	txt15 = "Admin, j'ai besoin d'aide !",
 	txt16 = "Combien d'argent voulez-vous jeter ?",
@@ -28,9 +28,9 @@ GTContext.lang["fr"] = {
 	txt22 = "Mandat de perquisition",
 	txt23 = "Enlever un mandat",
 	txt24 = "Mettre un tableau des lois",
-	txt25 = "Ajouter une lois",
-	txt26 = "Retirer une lois",
-	txt27 = "Numero de la lois"
+	txt25 = "Ajouter une loi",
+	txt26 = "Retirer une loi",
+	txt27 = "Numero de la loi"
 }
 
 GTContext.lang["eng"] = {
@@ -60,5 +60,5 @@ GTContext.lang["eng"] = {
 	txt24 = "Add A Law Tab",
 	txt25 = "Add A Law",
 	txt26 = "Delete A Law",
-	txt27 = "The Number Of The Law"
+	txt27 = "Law Number"
 }
