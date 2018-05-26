@@ -31,25 +31,27 @@ surface.CreateFont( "GTContext_Money", {   font = "Roboto",    size = 25,  weigh
 
 local langue = GTContext.choice
 
+local color = GTContext.colorchoice
+
 hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
     gui.EnableScreenClicker(true)
 
     ContextMenu = vgui.Create("DFrame")
     ContextMenu:SetTitle("")
     ContextMenu:SetSize(500,600)
-    ContextMenu:SetPos( ScrW() * 0.630, ScrH() * 0.100 )
+    ContextMenu:SetPos( ScrW() * 0.610, ScrH() * 0.100 )
     ContextMenu:ShowCloseButton(false)
     ContextMenu:SetDraggable(false)
     ContextMenu:MakePopup()
     ContextMenu.Paint = function(self, w, h)
         DrawBlur(self, 2)
-        draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
-        draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
-        draw.RoundedBox(0, ScrW() * 0.010, ScrH() * 0.020, 470, 50, Color(66, 66, 66, 150))
+        draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
+        draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
+        draw.RoundedBox(0, ScrW() * 0.010, ScrH() * 0.020, 470, 50, GTContext.style[color].color2)
         draw.DrawText(GTContext.TextServer, "GTContext_Title", ScrW() * 0.110, ScrH() * 0.020, Color(255, 255, 255, 255))
-        draw.RoundedBox(0, ScrW() * 0.010, ScrH() * 0.100, 470, 30, Color(66, 66, 66, 150))
+        draw.RoundedBox(0, ScrW() * 0.010, ScrH() * 0.100, 470, 30, GTContext.style[color].color2)
         draw.DrawText(GTContext.lang[langue].txt1, "GTContext_TextBase", ScrW() * 0.125, ScrH() * 0.093, Color(255, 255, 255, 255))
-        draw.RoundedBox(0, ScrW() * 0.010, ScrH() * 0.450, 470, 30, Color(66, 66, 66, 150))
+        draw.RoundedBox(0, ScrW() * 0.010, ScrH() * 0.450, 470, 30, GTContext.style[color].color2)
         draw.DrawText(GTContext.lang[langue].txt8, "GTContext_TextBase", ScrW() * 0.125, ScrH() * 0.447, Color(255, 255, 255, 255))
     end
 
@@ -62,13 +64,12 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
 
     CallAdmin4.Paint = function(self, w, h)
         DrawBlur(self, 2)
-        draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
-        draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
+        draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color3)
+        draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color3)
     end
 
     CallAdmin4.DoClick = function()
         RunConsoleCommand( "say", "/// "..GTContext.lang[langue].txt15 )
-        ContextMenu:Close()
     end
 
     local AreaButton = vgui.Create("DPanel", ContextMenu)
@@ -78,24 +79,24 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
 
     AreaButton.Paint = function(self, w, h)
         DrawBlur(self, 2)
-        draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
-        draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
+        draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color3)
+        draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color3)
     end
 
     local Scroll = vgui.Create( "DScrollPanel", AreaButton )
     Scroll:Dock( FILL )
     local sbar = Scroll:GetVBar()
     function sbar:Paint( w, h )
-        draw.RoundedBox( 0, 0, 0, w, h, Color( 0, 0, 0, 100 ) )
+        draw.RoundedBox( 0, 0, 0, w, h, GTContext.style[color].color6 )
     end
     function sbar.btnUp:Paint( w, h )
-        draw.RoundedBox( 0, 0, 0, w, h, Color( 0, 0, 0 ) )
+        draw.RoundedBox( 0, 0, 0, w, h, GTContext.style[color].color6 )
     end
     function sbar.btnDown:Paint( w, h )
-        draw.RoundedBox( 0, 0, 0, w, h, Color( 0, 0, 0 ) )
+        draw.RoundedBox( 0, 0, 0, w, h, GTContext.style[color].color6 )
     end
     function sbar.btnGrip:Paint( w, h )
-        draw.RoundedBox( 0, 0, 0, w, h, Color( 50, 50, 50 ) )
+        draw.RoundedBox( 0, 0, 0, w, h, GTContext.style[color].color5 )
     end
 
     local List = vgui.Create( "DIconLayout", Scroll )
@@ -112,8 +113,8 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
 
     DropMoney.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     DropMoney.DoClick = function()
@@ -126,8 +127,8 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
         Menu_DropMoney:MakePopup()
         Menu_DropMoney.Paint = function(self, w, h)
             DrawBlur(self, 2)
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
             draw.DrawText(GTContext.lang[langue].txt16, "GTContext_Money", ScrW() * 0.0, ScrH() * 0.028, Color(255, 255, 255, 255))
         end
 
@@ -152,8 +153,8 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
 
     GiveMoney.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     GiveMoney.DoClick = function()
@@ -166,8 +167,8 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
         Menu_GiveMoney:MakePopup()
         Menu_GiveMoney.Paint = function(self, w, h)
             DrawBlur(self, 2)
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
             draw.DrawText(GTContext.lang[langue].txt17, "GTContext_Money", ScrW() * 0.0, ScrH() * 0.028, Color(255, 255, 255, 255))
         end
 
@@ -191,8 +192,8 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
 
     DropWeapon.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     DropWeapon.DoClick = function()
@@ -208,8 +209,8 @@ hook.Add("OnContextMenuOpen","GTContext_MenuOpen",function()
 
     Sleep.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     Sleep.DoClick = function()
@@ -229,8 +230,8 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
 
     Warrant.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     Warrant.DoClick = function()
@@ -245,8 +246,8 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
 
         Wanted_Player.Paint = function(self, w, h)
             DrawBlur(self, 2)
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
         end
 
         local TextEntry4 = vgui.Create( "DTextEntry", Wanted_Player ) -- create the form as a child of frame
@@ -289,8 +290,8 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
 
     UnWanted.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     UnWanted.DoClick = function()
@@ -305,8 +306,8 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
 
         UnWanted_Player.Paint = function(self, w, h)
             DrawBlur(self, 2)
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
         end
 
         local TextEntry6 = vgui.Create( "DTextEntry", UnWanted_Player ) -- create the form as a child of frame
@@ -324,8 +325,8 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
 
         Accept1.Paint = function(self, w, h)
         DrawBlur(self, 2)
-        draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
-        draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
+        draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color3)
+        draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color3)
         end
 
         Accept1.DoClick = function()
@@ -343,8 +344,8 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
 
     Warrant.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     Warrant.DoClick = function()
@@ -359,8 +360,8 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
 
         Warrant_Player.Paint = function(self, w, h)
             DrawBlur(self, 2)
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
         end
 
         local TextEntry = vgui.Create( "DTextEntry", Warrant_Player ) -- create the form as a child of frame
@@ -384,8 +385,8 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
 
         Accept.Paint = function(self, w, h)
         DrawBlur(self, 2)
-        draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
-        draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
+        draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color3)
+        draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color3)
         end
 
         Accept.DoClick = function()
@@ -403,8 +404,8 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
 
     UnWarrant.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     UnWarrant.DoClick = function()
@@ -419,8 +420,8 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
 
         UnWarrant_Player.Paint = function(self, w, h)
             DrawBlur(self, 2)
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
         end
 
         local TextEntry3 = vgui.Create( "DTextEntry", UnWarrant_Player ) -- create the form as a child of frame
@@ -438,8 +439,8 @@ if (table.HasValue(GTContext.JobPolice , team.GetName(LocalPlayer():Team()))) th
 
         Accept1.Paint = function(self, w, h)
         DrawBlur(self, 2)
-        draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
-        draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
+        draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color3)
+        draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color3)
         end
 
         Accept1.DoClick = function()
@@ -460,8 +461,8 @@ end
 
     LawTab.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     LawTab.DoClick = function()
@@ -477,8 +478,8 @@ end
 
     AddLaw.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     AddLaw.DoClick = function()
@@ -491,8 +492,8 @@ end
         LawAdd:MakePopup()
         LawAdd.Paint = function(self, w, h)
             DrawBlur(self, 2)
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
         end
 
         local TextEntry7 = vgui.Create( "DTextEntry", LawAdd ) -- create the form as a child of frame
@@ -510,8 +511,8 @@ end
 
         Accept35.Paint = function(self, w, h)
         DrawBlur(self, 2)
-        draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
-        draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
+        draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color3)
+        draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color3)
         end
 
         Accept35.DoClick = function()
@@ -529,8 +530,8 @@ end
 
     DltLaw.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     DltLaw.DoClick = function()
@@ -543,8 +544,8 @@ end
         LawDlt:MakePopup()
         LawDlt.Paint = function(self, w, h)
             DrawBlur(self, 2)
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
-            draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 30, 230))
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
+            draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color1)
         end
 
         local TextEntry8 = vgui.Create( "DTextEntry", LawDlt ) -- create the form as a child of frame
@@ -562,8 +563,8 @@ end
 
         Accept36.Paint = function(self, w, h)
         DrawBlur(self, 2)
-        draw.RoundedBox(0, 0, 0, w, h, Color(50, 18, 50, 255))
-        draw.RoundedBox(0, 0, 0, w, 30, Color(50, 18, 50, 255))
+        draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color3)
+        draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color3)
         end
 
         Accept36.DoClick = function()
@@ -583,8 +584,8 @@ if GTContext.ShowDiscord == true then
 
     Discord.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     Discord.DoClick = function()
@@ -601,8 +602,8 @@ if GTContext.ShowWebsite == true then
 
     Forum.Paint = function(self, w, h)
     DrawBlur(self, 2)
-    draw.RoundedBox(0, 0, 0, w, h, Color(66, 70, 80, 255))
-    draw.RoundedBox(0, 0, 0, w, 30, Color(66, 70, 80, 255))
+    draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color4)
+    draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color4)
     end
 
     Forum.DoClick = function()
@@ -618,8 +619,8 @@ end
     GTContext_InfoPanel:SetSize(485,200)
     GTContext_InfoPanel.Paint = function(self, w, h)
         DrawBlur(self, 2)
-        draw.RoundedBox(0, 0, 0, w, h, Color(50, 50, 50, 150))
-        draw.RoundedBox(0, 0, 0, w, 30, Color(50, 50, 50, 150))
+        draw.RoundedBox(0, 0, 0, w, h, GTContext.style[color].color5)
+        draw.RoundedBox(0, 0, 0, w, 30, GTContext.style[color].color5)
         draw.DrawText(GTContext.lang[langue].txt9.." :                      "..LocalPlayer():Name(), "GTContext_Info", ScrW() * 0.110, ScrH() * 0.020, Color(255, 255, 255, 255))
         draw.DrawText(GTContext.lang[langue].txt10.." :                  "..team.GetName(LocalPlayer():Team()), "GTContext_Info", ScrW() * 0.110, ScrH() * 0.060, Color(255, 255, 255, 255))
         draw.DrawText(GTContext.lang[langue].txt11.." :                  "..DarkRP.formatMoney(LocalPlayer():getDarkRPVar("money")), "GTContext_Info", ScrW() * 0.110, ScrH() * 0.100, Color(255, 255, 255, 255))
